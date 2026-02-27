@@ -1,5 +1,7 @@
 {
-  "providers": [
+  "name": "Sinewix Repo",
+  "version": "1.0.0",
+  "scrapers": [
     {
       "id": "sinewix",
       "name": "Sinewix",
@@ -11,9 +13,7 @@
       "enabled": true,
       "logo": "https://www.sinewix.com/favicon.ico",
       "contentLanguage": ["tr"],
-      "formats": ["m3u8", "mp4"],
-      "limited": false,
-      "supportsExternalPlayer": true
+      "formats": ["m3u8", "mp4"]
     }
   ]
 }
