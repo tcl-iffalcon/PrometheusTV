@@ -8,42 +8,64 @@ var BASE_URL = "https://sinewix.onrender.com";
 function getStreams(tmdbId, mediaType, season, episode) {
   console.log("[Sinewix] Fetching:", mediaType, tmdbId, season, episode);
 
+  var sinewixType = mediaType === "movie" ? "movie" : "series";
+  var catalogId = mediaType === "movie" ? "sinewix-movies" : "sinewix-series";
+
+  // Önce TMDB'den başlık al
   var tmdbType = mediaType === "movie" ? "movie" : "tv";
-  var tmdbUrl = "https://api.themoviedb.org/3/" + tmdbType + "/" + tmdbId + "/external_ids?api_key=4ef0d7355d9ffb5151e987764708ce96";
+  var tmdbUrl = "https://api.themoviedb.org/3/" + tmdbType + "/" + tmdbId + "?language=tr-TR&api_key=4ef0d7355d9ffb5151e987764708ce96";
 
   return fetch(tmdbUrl)
     .then(function(res) { return res.json(); })
     .then(function(data) {
-      var imdbId = data.imdb_id;
-      if (!imdbId) {
-        console.log("[Sinewix] No IMDb ID found for TMDB:", tmdbId);
-        return fetchStreams("tmdb:" + tmdbId, mediaType, season, episode);
-      }
-      console.log("[Sinewix] IMDb ID:", imdbId);
-      return fetchStreams(imdbId, mediaType, season, episode);
+      var title = data.title || data.name || "";
+      console.log("[Sinewix] Title:", title);
+      if (!title) return [];
+      return searchAndStream(title, catalogId, sinewixType, season, episode);
     })
     .catch(function(err) {
       console.error("[Sinewix] TMDB error:", err.message);
-      return fetchStreams("tmdb:" + tmdbId, mediaType, season, episode);
+      return [];
     });
 }
 
-function fetchStreams(stremioId, mediaType, season, episode) {
-  var streamUrl;
+function searchAndStream(title, catalogId, sinewixType, season, episode) {
+  var searchUrl = BASE_URL + "/catalog/" + sinewixType + "/" + catalogId + "/search=" + encodeURIComponent(title) + ".json";
+  console.log("[Sinewix] Search URL:", searchUrl);
 
-  if (mediaType === "movie") {
-    streamUrl = BASE_URL + "/stream/movie/" + stremioId + ".json";
+  return fetch(searchUrl, {
+    headers: { "User-Agent": "Mozilla/5.0", "Accept": "application/json" }
+  })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      if (!data || !data.metas || data.metas.length === 0) {
+        console.log("[Sinewix] No results for:", title);
+        return [];
+      }
+
+      var sinewixId = data.metas[0].id;
+      console.log("[Sinewix] Found ID:", sinewixId);
+      return fetchStreams(sinewixId, sinewixType, season, episode);
+    })
+    .catch(function(err) {
+      console.error("[Sinewix] Search error:", err.message);
+      return [];
+    });
+}
+
+function fetchStreams(sinewixId, sinewixType, season, episode) {
+  var streamId;
+  if (sinewixType === "movie") {
+    streamId = sinewixId;
   } else {
-    streamUrl = BASE_URL + "/stream/series/" + stremioId + ":" + season + ":" + episode + ".json";
+    streamId = sinewixId + ":" + season + ":" + episode;
   }
 
+  var streamUrl = BASE_URL + "/stream/" + sinewixType + "/" + streamId + ".json";
   console.log("[Sinewix] Stream URL:", streamUrl);
 
   return fetch(streamUrl, {
-    headers: {
-      "User-Agent": "Mozilla/5.0",
-      "Accept": "application/json"
-    }
+    headers: { "User-Agent": "Mozilla/5.0", "Accept": "application/json" }
   })
     .then(function(res) { return res.json(); })
     .then(function(data) {
@@ -57,10 +79,10 @@ function fetchStreams(stremioId, mediaType, season, episode) {
       return data.streams.map(function(s) {
         return {
           name: "Sinewix",
-          title: s.title || s.name || "Sinewix Stream",
+          title: s.title || "Sinewix",
           url: s.url,
           quality: s.quality || "HD",
-          headers: s.behaviorHints && s.behaviorHints.headers ? s.behaviorHints.headers : {
+          headers: {
             "Referer": BASE_URL,
             "User-Agent": "Mozilla/5.0"
           }
@@ -68,7 +90,7 @@ function fetchStreams(stremioId, mediaType, season, episode) {
       }).filter(function(s) { return s.url; });
     })
     .catch(function(err) {
-      console.error("[Sinewix] Stream fetch error:", err.message);
+      console.error("[Sinewix] Stream error:", err.message);
       return [];
     });
 }
