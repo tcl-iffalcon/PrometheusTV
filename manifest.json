@@ -14,6 +14,19 @@
       "logo": "https://www.sinewix.com/favicon.ico",
       "contentLanguage": ["tr"],
       "formats": ["m3u8", "mp4"]
+    },
+    {
+      "id": "cineby",
+      "name": "Cineby",
+      "description": "Film ve dizi — cineby.gd",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/cineby.js",
+      "enabled": true,
+      "logo": "https://www.cineby.gd/favicon.ico",
+      "contentLanguage": ["en", "tr"],
+      "formats": ["embed"]
     }
   ]
 }
