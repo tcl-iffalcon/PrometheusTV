@@ -36,8 +36,9 @@ function getStreams(tmdbid, mediatype, season, episode) {
           name: "Cineby",
           title: "▶ Cineby",
           url: embedUrl,
+          externalUrl: embedUrl,
           behaviorHints: {
-            notWebReady: false,
+            notWebReady: true,
             bingeGroup: "cineby",
           },
         },
