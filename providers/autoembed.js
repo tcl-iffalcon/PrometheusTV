@@ -19,11 +19,10 @@ function getStreams(tmdbid, mediatype, season, episode) {
       episode;
   }
 
-  return Promise.resolve([
+return Promise.resolve([
     {
       name: "AutoEmbed",
       title: "▶ AutoEmbed",
-      url: embedUrl,
       externalUrl: embedUrl,
       behaviorHints: {
         notWebReady: true,
@@ -32,5 +31,4 @@ function getStreams(tmdbid, mediatype, season, episode) {
     },
   ]);
 }
-
 module.exports = { getStreams };
