@@ -33,7 +33,6 @@ function getStreams(tmdbid, mediatype, season, episode) {
         {
           name: "VidSrc.to",
           title: "▶ VidSrc.to",
-          url: embedUrl,
           externalUrl: embedUrl,
           behaviorHints: {
             notWebReady: true,

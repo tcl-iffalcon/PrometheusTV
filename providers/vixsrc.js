@@ -18,7 +18,6 @@ function getStreams(tmdbid, mediatype, season, episode) {
     {
       name: "VixSrc",
       title: "▶ VixSrc",
-      url: embedUrl,
       externalUrl: embedUrl,
       behaviorHints: {
         notWebReady: true,

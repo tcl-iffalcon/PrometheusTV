@@ -18,7 +18,6 @@ function getStreams(tmdbid, mediatype, season, episode) {
     {
       name: "Vidlink",
       title: "▶ Vidlink",
-      url: embedUrl,
       externalUrl: embedUrl,
       behaviorHints: {
         notWebReady: true,

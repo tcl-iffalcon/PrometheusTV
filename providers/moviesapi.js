@@ -38,7 +38,6 @@ function getStreams(tmdbid, mediatype, season, episode) {
         {
           name: "MoviesAPI",
           title: "▶ MoviesAPI",
-          url: embedUrl,
           externalUrl: embedUrl,
           behaviorHints: {
             notWebReady: true,

@@ -42,7 +42,6 @@ function getStreams(tmdbid, mediatype, season, episode) {
         {
           name: "SuperEmbed",
           title: "▶ SuperEmbed",
-          url: embedUrl,
           externalUrl: embedUrl,
           behaviorHints: {
             notWebReady: true,
