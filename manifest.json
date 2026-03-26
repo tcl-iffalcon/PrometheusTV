@@ -27,6 +27,97 @@
       "logo": "https://www.cineby.gd/favicon.ico",
       "contentLanguage": ["en", "tr"],
       "formats": ["embed"]
+    },
+    {
+      "id": "vidsrcto",
+      "name": "VidSrc.to",
+      "description": "Film ve dizi — vidsrc.to",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/vidsrcto.js",
+      "enabled": true,
+      "logo": "https://vidsrc.to/favicon.ico",
+      "contentLanguage": ["en"],
+      "formats": ["embed"]
+    },
+    {
+      "id": "vidsrcme",
+      "name": "VidSrc.me",
+      "description": "Film ve dizi — vidsrc.me",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/vidsrcme.js",
+      "enabled": true,
+      "logo": "https://vidsrc.me/favicon.ico",
+      "contentLanguage": ["en"],
+      "formats": ["embed"]
+    },
+    {
+      "id": "vixsrc",
+      "name": "VixSrc",
+      "description": "Film ve dizi — vixsrc.to",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/vixsrc.js",
+      "enabled": true,
+      "logo": "https://vixsrc.to/favicon.ico",
+      "contentLanguage": ["en"],
+      "formats": ["embed"]
+    },
+    {
+      "id": "vidlink",
+      "name": "Vidlink",
+      "description": "Film ve dizi — vidlink.pro",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/vidlink.js",
+      "enabled": true,
+      "logo": "https://vidlink.pro/favicon.ico",
+      "contentLanguage": ["en"],
+      "formats": ["embed"]
+    },
+    {
+      "id": "autoembed",
+      "name": "AutoEmbed",
+      "description": "Film ve dizi — autoembed.cc",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/autoembed.js",
+      "enabled": true,
+      "logo": "https://autoembed.cc/favicon.ico",
+      "contentLanguage": ["en"],
+      "formats": ["embed"]
+    },
+    {
+      "id": "moviesapi",
+      "name": "MoviesAPI",
+      "description": "Film ve dizi — moviesapi.club",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/moviesapi.js",
+      "enabled": true,
+      "logo": "https://moviesapi.club/favicon.ico",
+      "contentLanguage": ["en"],
+      "formats": ["embed"]
+    },
+    {
+      "id": "superembed",
+      "name": "SuperEmbed",
+      "description": "Film ve dizi — multiembed.mov",
+      "version": "1.0.0",
+      "author": "community",
+      "supportedTypes": ["movie", "tv"],
+      "filename": "providers/superembed.js",
+      "enabled": true,
+      "logo": "https://multiembed.mov/favicon.ico",
+      "contentLanguage": ["en"],
+      "formats": ["embed"]
     }
   ]
 }
